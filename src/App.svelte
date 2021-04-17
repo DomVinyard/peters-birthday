@@ -3,6 +3,7 @@
     month: 4,
     date: 17,
   };
+  export let isLoaded;
   export let isToday;
   const checkIsToday = () => {
     const now = new Date();
@@ -11,11 +12,29 @@
   };
   checkIsToday();
   $: setInterval(checkIsToday, 10000);
+
+  let src = "./dave.gif";
+
+  function preload(src) {
+    return new Promise(function (resolve) {
+      let img = new Image();
+      img.onload = () => {
+        resolve();
+        isLoaded = true;
+      };
+      img.src = src;
+    });
+  }
 </script>
 
-<main style="background-image: url('./dave.gif')">
-  <h1>{isToday ? "YES" : "NO"}</h1>
-</main>
+{#await preload(src) then _}
+  <main style="background-image: url('./dave.gif')">
+    <h1>{isToday ? "YES" : "NO"}</h1>
+  </main>
+{/await}
+{#if !isLoaded}
+  <main><h1 class="loading">LOADING</h1></main>
+{/if}
 
 <style>
   main {
@@ -41,6 +60,12 @@
     font-weight: 800;
     padding: 0px 32px;
     margin: 0;
+  }
+
+  .loading {
+    color: black;
+    background: white;
+    max-width: 440px;
   }
 
   @media (min-width: 640px) {
