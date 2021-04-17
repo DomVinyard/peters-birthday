@@ -36,7 +36,7 @@
   </main>
 {/await}
 {#if !isLoaded}
-  <main><h1 class="loading">LOADING</h1></main>
+  <main><h1 class="loading">CHECKING...</h1></main>
 {/if}
 
 <style>
