@@ -1,7 +1,7 @@
 <script>
   const birthday = {
     month: 4,
-    date: 17,
+    date: 18,
   };
   export let isLoaded;
   export let isToday;
@@ -28,7 +28,10 @@
 </script>
 
 {#await preload(src) then _}
-  <main style="background-image: url('./dave.gif')">
+  <main
+    class={isToday ? "yes" : "no"}
+    style="background-image: url('./dave.gif')"
+  >
     <h1>{isToday ? "YES" : "NO"}</h1>
   </main>
 {/await}
@@ -48,6 +51,11 @@
     display: flex;
     background-size: cover;
     background-position: center center;
+  }
+
+  .no {
+    background-blend-mode: luminosity;
+    background-color: rgba(255, 255, 255, 1);
   }
 
   h1 {
