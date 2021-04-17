@@ -44,7 +44,9 @@
     text-align: center;
     padding: 0em;
     margin: 0;
-    height: 100vh;
+    min-height: 100vh;
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
     width: 100vw;
     justify-content: center;
     align-items: center;
@@ -73,6 +75,8 @@
   .loading {
     color: black;
     background: white;
+    font-size: 3em;
+    text-transform: lowercase;
     max-width: 440px;
   }
 
