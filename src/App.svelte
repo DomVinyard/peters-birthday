@@ -1,7 +1,7 @@
 <script>
   const birthday = {
     month: 8,
-    date: 5,
+    date: 4,
     year: 1946
   };
   export let isLoaded;
