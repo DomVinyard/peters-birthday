@@ -1,7 +1,8 @@
 <script>
   const birthday = {
-    month: 4,
-    date: 17,
+    month: 8,
+    date: 5,
+    year: 1946
   };
   export let isLoaded;
   export let isToday;
@@ -13,7 +14,7 @@
   checkIsToday();
   $: setInterval(checkIsToday, 10000);
 
-  let src = "./dave.gif";
+  let src = isToday ? "./dad.gif" : "./static.gif";
 
   function preload(src) {
     return new Promise(function (resolve) {
@@ -30,7 +31,7 @@
 {#await preload(src) then _}
   <main
     class={isToday ? "yes" : "no"}
-    style="background-image: url('./dave.gif')"
+    style={`background-image: url('${src}')`}
   >
     <h1>{isToday ? "YES" : "NO"}</h1>
   </main>
@@ -56,8 +57,9 @@
   }
 
   .no {
-    background-blend-mode: luminosity;
+    /* background-blend-mode: luminosity; */
     background-color: rgba(255, 255, 255, 1);
+    background-position: center center;
   }
 
   h1 {
